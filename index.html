@@ -2,7 +2,7 @@
 <html>
 
 <head>
-   <title>Shopping Cart</title>
+   <title>My Shopping Cart</title>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -22,14 +22,14 @@
                         <img src="images/product-1.png" alt="">
                         <h5>iPhone 11 128GB Black</h5>
                      </div>
-
+                     <!-- phoneSubBtn phoneAddBtn phoneInput phoneBalance -->
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button class="btn btn-default" id="phoneSubBtn"><i class="fas fa-minus"></i></button>
+                           <input type="text" class="form-control text-center" value="1" id="phoneInput">
+                           <button class="btn btn-default" id="phoneAddBtn"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5>$ <span id="phoneBalance">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -64,9 +64,9 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
-                        <h5>$0</h5>
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="subTotal">1278</span> </h5>
+                        <h5>$ <span id="taxTotal">10</span></h5>
+                        <h5>$ <span id="totalCart">1278</span></h5>
                      </div>
                   </div>
                </div>
@@ -78,5 +78,45 @@
       </div>
    </section>
 </body>
+
+<script>
+// phoneSubBtn phoneAddBtn phoneInput phoneBalance
+const phoneAddBtn = document.getElementById('phoneAddBtn');
+const phoneSubBtn = document.getElementById('phoneSubBtn');
+const phoneBalance = parseInt(document.getElementById('phoneBalance').innerText);
+
+phoneAddBtn.addEventListener('click', function(){
+    const phoneInput = parseInt(document.getElementById('phoneInput').value);
+     let count = phoneInput;
+     if(count >= 0)count++;
+     document.getElementById('phoneInput').value = count;
+     document.getElementById('phoneBalance').innerText = count * phoneBalance;
+
+
+     const phoneTotal = parseInt(document.getElementById('phoneBalance').innerText);
+     const taxTotal =  parseInt(document.getElementById('taxTotal').innerText);
+
+     document.getElementById('subTotal').innerText = phoneTotal + taxTotal;
+     document.getElementById('totalCart').innerText = phoneTotal + taxTotal;
+})
+
+
+phoneSubBtn.addEventListener('click', function(){
+    const phoneInput = parseInt(document.getElementById('phoneInput').value);
+     let count = phoneInput;
+     if(count>0)count--;
+     document.getElementById('phoneInput').value = count;
+     document.getElementById('phoneBalance').innerText = count * phoneBalance;
+
+
+     const phoneTotal = parseInt(document.getElementById('phoneBalance').innerText);
+     const taxTotal =  parseInt(document.getElementById('taxTotal').innerText);
+
+     document.getElementById('subTotal').innerText = phoneTotal + taxTotal;
+     document.getElementById('totalCart').innerText = phoneTotal + taxTotal;
+})
+
+</script>
+
 
 </html>
