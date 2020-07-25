@@ -86,19 +86,30 @@ const phoneSubBtn = document.getElementById('phoneSubBtn');
 const phoneBalance = parseInt(document.getElementById('phoneBalance').innerText);
 
 phoneAddBtn.addEventListener('click', function(){
-    const phoneInput = parseInt(document.getElementById('phoneInput').value);
+  getAdd('phoneInput','phoneBalance');
+})
+
+function getAdd(input, balance){
+   const phoneInput = parseInt(document.getElementById(input).value);
      let count = phoneInput;
      if(count >= 0)count++;
-     document.getElementById('phoneInput').value = count;
-     document.getElementById('phoneBalance').innerText = count * phoneBalance;
+     document.getElementById(input).value = count;
+     document.getElementById(balance).innerText = count * phoneBalance;
 
-
-     const phoneTotal = parseInt(document.getElementById('phoneBalance').innerText);
+     const phoneTotal = parseInt(document.getElementById(balance).innerText);
      const taxTotal =  parseInt(document.getElementById('taxTotal').innerText);
 
-     document.getElementById('subTotal').innerText = phoneTotal + taxTotal;
+     document.getElementById('subTotal').innerText = phoneTotal;
      document.getElementById('totalCart').innerText = phoneTotal + taxTotal;
-})
+}
+
+
+
+
+
+
+
+
 
 
 phoneSubBtn.addEventListener('click', function(){
@@ -112,7 +123,7 @@ phoneSubBtn.addEventListener('click', function(){
      const phoneTotal = parseInt(document.getElementById('phoneBalance').innerText);
      const taxTotal =  parseInt(document.getElementById('taxTotal').innerText);
 
-     document.getElementById('subTotal').innerText = phoneTotal + taxTotal;
+     document.getElementById('subTotal').innerText = phoneTotal;
      document.getElementById('totalCart').innerText = phoneTotal + taxTotal;
 })
 
